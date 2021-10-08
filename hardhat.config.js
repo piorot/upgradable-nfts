@@ -1,5 +1,7 @@
 require("@nomiclabs/hardhat-waffle");
-import {Ropsten_Owner, Ropsten_Adam, Ropsten_Ewa} from './private-keys'
+const secrets = require("./private-keys");
+const ehterscanApiKey = requie("./etherscan")
+require("@nomiclabs/hardhat-etherscan");
 
 // This is a sample Hardhat task. To learn how to create your own go to
 // https://hardhat.org/guides/create-task.html
@@ -11,6 +13,9 @@ task("accounts", "Prints the list of accounts", async () => {
   }
 
 });
+
+
+
 
 
 
@@ -26,11 +31,24 @@ module.exports = {
     ropsten: {
       url: `https://eth-ropsten.alchemyapi.io/v2/UTzMXNfY8mfvBwQhRElRZlXYm1Uhdwce`,
       accounts: [
-        `0x${Ropsten_Owner}`,
-        `0x${Ropsten_Adam}`,
-        `0x${Ropsten_Ewa}`,
+        `0x${secrets.Ropsten_Owner}`,
+        `0x${secrets.Ropsten_Adam}`,
+        `0x${secrets.Ropsten_Ewa}`,
       ],
     },
-  }
+    rinkeby: {
+      url: 'https://eth-rinkeby.alchemyapi.io/v2/81Q_z7ApJHfuQfnOUZK-8EbXBGZA-2d-',
+      accounts: [
+        `0x${secrets.Ropsten_Owner}`,
+        `0x${secrets.Ropsten_Adam}`,
+        `0x${secrets.Ropsten_Ewa}`,
+      ],
+    }
+  },
+  etherscan: {
+    // Your API key for Etherscan
+    // Obtain one at https://etherscan.io/
+    apiKey: secrets.etherscan
+  },
   
 };
